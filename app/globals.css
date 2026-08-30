@@ -1,26 +1,371 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================================
+   4M Global Services — design tokens
+   Single source of truth for colour, type, spacing, motion and elevation.
+   Tailwind v4 CSS-first config: everything in @theme becomes a utility.
+   ========================================================================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* -- Brand: deep navy base ------------------------------------------- */
+  /* Sampled from the company logo: a royal navy, not a neutral near-black. */
+  --color-navy-950: #050d21; /* page-dark background, footer */
+  --color-navy-900: #081738; /* dark sections (logo's dominant tone) */
+  --color-navy-850: #0a1c44; /* dark section alternate */
+  --color-navy-800: #0d2450; /* dark cards / elevated surfaces */
+  --color-navy-700: #12305f; /* logo gradient centre; borders on dark */
+  --color-navy-600: #1d4288; /* dividers / hover borders on dark */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* -- Brand: safety orange accent -------------------------------------- */
+  /* Interactive orange. Bright orange-500 is only 2.85:1 on white and under
+     white text, so anything carrying text uses these darker steps instead. */
+  --color-orange-800: #9a330a;
+  --color-orange-700: #c2410c;
+  --color-orange-600: #e85c0d;
+  --color-orange-500: #ff6b1a; /* primary CTA */
+  --color-orange-400: #ff8642; /* hover */
+  --color-orange-300: #ffa971;
+  --color-orange-100: #ffe7d6; /* tint backgrounds on light */
+
+  /* -- Neutrals ---------------------------------------------------------- */
+  --color-ink-900: #0d1117; /* body text on light */
+  --color-ink-700: #26313f;
+  --color-ink-600: #4a5568; /* secondary text on light */
+  --color-ink-400: #64748b; /* muted text — 4.76:1 on white */
+  --color-mist-200: #dde5ef; /* borders on light */
+  --color-mist-100: #eef2f8;
+  --color-mist-50: #f7f9fc; /* light section background */
+
+  /* -- Support ----------------------------------------------------------- */
+  --color-teal-400: #2dd4bf; /* success / "in transit" */
+  --color-red-500: #e5484d; /* form errors */
+
+  /* -- Sub-brand accents (see .brand-* wrappers below) -------------------- */
+  --color-cognita-600: #1d4ed8;
+  --color-cognita-500: #2563eb;
+  --color-cognita-100: #dbeafe;
+  --color-mindora-600: #7c3aed;
+  --color-mindora-500: #8b5cf6;
+  --color-mindora-400: #a78bfa;
+  --color-mindora-100: #ede9fe;
+  /* Sampled from MND Interiors' own logo (#B6842C gold). Raw gold fails WCAG
+     AA as text (3.32:1 on white), hence the darker -700/-600 steps below. */
+  --color-mnd-700: #6b4d18;
+  --color-mnd-600: #8f6620; /* accessible: 5.14:1 on white — text/buttons */
+  --color-mnd-500: #b6842c; /* bright: matches the real logo — graphics/on-dark */
+  --color-mnd-100: #f5e9d6;
+
+  /* -- Typography -------------------------------------------------------- */
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid type scale */
+  --text-hero: clamp(2.75rem, 1.6rem + 4.6vw, 5.5rem);
+  --text-hero--line-height: 1.03;
+  --text-hero--letter-spacing: -0.03em;
+  --text-h1: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.75rem);
+  --text-h2--line-height: 1.14;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.3rem, 1.15rem + 0.7vw, 1.75rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.012em;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.14em;
+
+  /* -- Radii ------------------------------------------------------------- */
+  --radius-btn: 10px;
+  --radius-card: 20px;
+  --radius-panel: 28px;
+
+  /* -- Elevation ramp (3 steps, no more) --------------------------------- */
+  --shadow-e1: 0 1px 2px rgb(13 17 23 / 0.04), 0 2px 8px rgb(13 17 23 / 0.05);
+  --shadow-e2: 0 2px 6px rgb(13 17 23 / 0.06), 0 12px 28px rgb(13 17 23 / 0.09);
+  --shadow-e3: 0 8px 16px rgb(13 17 23 / 0.08), 0 28px 60px rgb(13 17 23 / 0.14);
+
+  /* -- Motion (mirrored in lib/motion.ts — keep in sync) ------------------ */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-micro: 160ms;
+  --duration-reveal: 600ms;
+
+  /* -- Layout ------------------------------------------------------------ */
+  --spacing-section: clamp(5rem, 10vw, 9rem);
+  --container-site: 1280px;
+
+  /* -- Named animations (overlays, drawers, menus) ------------------------ */
+  --animate-fade-in: fade-in 200ms var(--ease-out-quart) both;
+  --animate-slide-in-right: slide-in-right 300ms var(--ease-out-expo) both;
+  --animate-menu-in: menu-in 220ms var(--ease-out-quart) both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  --animate-accordion-down: accordion-down 260ms var(--ease-out-quart);
+  --animate-accordion-up: accordion-up 220ms var(--ease-out-quart);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-scale-in: scale-in 220ms var(--ease-out-expo) both;
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  :root {
+    color-scheme: light;
+    /* Sub-brand accent — overridden by .brand-* wrappers. */
+    /* Bright accent: graphics, large shapes, anything with no text on it. */
+    --brand-accent: var(--color-orange-500);
+    /* Accessible accent: link text on light, and button fills under white
+       text. Both clear WCAG 2.2 AA at 5.18:1. */
+    --brand-accent-strong: var(--color-orange-700);
+    --brand-accent-strong-hover: var(--color-orange-800);
+    --brand-accent-hover: var(--color-orange-400);
+    --brand-accent-contrast: #ffffff;
+    --brand-accent-tint: var(--color-orange-100);
+    /* Lighter sibling for use on navy — the base accent fails contrast there. */
+    --brand-accent-on-dark: var(--color-orange-400);
+  }
+
+  * {
+    border-color: var(--color-mist-200);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  /* Anchor targets clear the sticky header. */
+  :target,
+  [id] {
+    scroll-margin-top: 6.5rem;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible focus, always. Never `outline: none`. */
+  :focus-visible {
+    outline: 2px solid var(--brand-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* On dark backgrounds the orange ring needs a light halo to stay visible. */
+  .on-dark :focus-visible {
+    outline-color: #ffffff;
+  }
+
+  ::selection {
+    background-color: var(--color-orange-500);
+    color: #ffffff;
+  }
+}
+
+/* ==========================================================================
+   Sub-brand themes — token overrides, not a second design system
+   ========================================================================== */
+
+.brand-cognita {
+  --brand-accent: var(--color-cognita-500);
+  --brand-accent-strong: var(--color-cognita-600);
+  --brand-accent-strong-hover: #1a3fae;
+  --brand-accent-hover: var(--color-cognita-600);
+  --brand-accent-contrast: #ffffff;
+  --brand-accent-tint: var(--color-cognita-100);
+  --brand-accent-on-dark: #7dabff;
+}
+
+.brand-mindora {
+  --brand-accent: var(--color-mindora-500);
+  --brand-accent-strong: var(--color-mindora-600);
+  --brand-accent-strong-hover: #6425d5;
+  --brand-accent-hover: var(--color-mindora-600);
+  --brand-accent-contrast: #ffffff;
+  --brand-accent-tint: var(--color-mindora-100);
+  --brand-accent-on-dark: var(--color-mindora-400);
+}
+
+.brand-mnd {
+  --brand-accent: var(--color-mnd-500);
+  --brand-accent-strong: var(--color-mnd-600);
+  --brand-accent-strong-hover: var(--color-mnd-700);
+  --brand-accent-hover: var(--color-mnd-600);
+  --brand-accent-contrast: #ffffff;
+  --brand-accent-tint: var(--color-mnd-100);
+  --brand-accent-on-dark: var(--color-mnd-500);
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 768px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: var(--spacing-section);
+}
+
+/* Accent colour driven by the nearest .brand-* wrapper. */
+@utility bg-accent {
+  background-color: var(--brand-accent);
+}
+/* Text and icons on light surfaces — uses the AA-compliant step. */
+@utility text-accent {
+  color: var(--brand-accent-strong);
+}
+
+/* The accent as used on navy surfaces. */
+@utility text-accent-dark {
+  color: var(--brand-accent-on-dark);
+}
+@utility border-accent {
+  border-color: var(--brand-accent-strong);
+}
+
+/* Fine dotted grid used behind dark sections for texture. */
+@utility bg-grid-dark {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(255 255 255 / 0.07) 1px,
+    transparent 0
+  );
+  background-size: 32px 32px;
+}
+
+/* Screen-reader-only, but focusable (skip link). */
+@utility sr-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+
+  &:focus-visible {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+    overflow: visible;
+    clip-path: none;
+    background-color: var(--color-navy-950);
+    color: #ffffff;
+    border-radius: var(--radius-btn);
+  }
+}
+
+/* ==========================================================================
+   Reduced motion — honour the OS setting everywhere, including CSS.
+   Motion components additionally use <MotionConfig reducedMotion="user">.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
