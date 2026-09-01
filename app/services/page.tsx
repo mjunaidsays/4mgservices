@@ -3,12 +3,19 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { RevealItem, Stagger } from "@/components/motion/reveal";
+import { Advantages } from "@/components/sections/advantages";
 import { CtaBand } from "@/components/sections/cta-band";
+import { IndustriesGrid } from "@/components/sections/industries-grid";
+import { Journey } from "@/components/sections/journey";
+import { ServicesBento } from "@/components/sections/services-bento";
+import { Stats } from "@/components/sections/stats";
+import { Testimonials } from "@/components/sections/testimonials";
+import { TrustStrip } from "@/components/sections/trust-strip";
+import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { images } from "@/lib/content/images";
-import { services } from "@/lib/content/services";
 import { ventures } from "@/lib/content/ventures";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 
@@ -37,37 +44,14 @@ export default function ServicesPage() {
         image={images.warehouseRacking}
       />
 
-      <section className="section-y bg-white">
-        <div className="container-site">
-          <Stagger className="grid gap-4 md:grid-cols-2">
-            {services.map((service) => (
-              <RevealItem key={service.slug} small className="h-full">
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group flex h-full flex-col rounded-card border border-mist-200 bg-white p-7 shadow-e1 transition-[transform,box-shadow,border-color] duration-160 ease-out-quart hover:-translate-y-1 hover:border-transparent hover:shadow-e2 motion-reduce:hover:translate-y-0"
-                >
-                  <span className="inline-flex size-11 items-center justify-center rounded-btn bg-[var(--brand-accent-tint)] text-accent">
-                    <service.icon aria-hidden className="size-5" />
-                  </span>
-
-                  <h2 className="mt-5 text-h3 text-ink-900">{service.name}</h2>
-                  <p className="mt-3 flex-1 leading-relaxed text-ink-600">
-                    {service.summary}
-                  </p>
-
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                    Explore this service
-                    <ArrowUpRight
-                      aria-hidden
-                      className="size-4 transition-transform duration-160 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
-                    />
-                  </span>
-                </Link>
-              </RevealItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      <ServicesBento />
+      <TrustStrip />
+      <Journey />
+      <Advantages />
+      <Stats />
+      <IndustriesGrid />
+      <WhyChooseUs />
+      <Testimonials />
 
       <section className="section-y bg-mist-50">
         <div className="container-site">

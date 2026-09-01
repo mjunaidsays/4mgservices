@@ -48,8 +48,9 @@
   --color-mindora-500: #8b5cf6;
   --color-mindora-400: #a78bfa;
   --color-mindora-100: #ede9fe;
-  /* Sampled from MND Interiors' own logo (#B6842C gold). Raw gold fails WCAG
-     AA as text (3.32:1 on white), hence the darker -700/-600 steps below. */
+  /* Sampled from 4M Interiors' original logo (#B6842C gold, retired — see
+     app/solutions/4m-interiors/page.tsx). Raw gold fails WCAG AA as text
+     (3.32:1 on white), hence the darker -700/-600 steps below. */
   --color-mnd-700: #6b4d18;
   --color-mnd-600: #8f6620; /* accessible: 5.14:1 on white — text/buttons */
   --color-mnd-500: #b6842c; /* bright: matches the real logo — graphics/on-dark */

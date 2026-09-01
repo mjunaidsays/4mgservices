@@ -12,7 +12,7 @@ import { ventures } from "@/lib/content/ventures";
 export const metadata: Metadata = {
   title: "Technology & interiors",
   description:
-    "Alongside logistics, 4M Global Services builds Cognita Campus OS and Mindora for schools and children, and designs and fits out spaces through MND Interiors.",
+    "Alongside logistics, 4M Global Services builds Cognita Campus OS and Mindora for schools and children, and designs and fits out spaces through 4M Interiors.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -64,7 +64,7 @@ export default function SolutionsPage() {
                   </p>
 
                   <span className="mt-4 inline-flex items-center gap-1.5 font-medium text-accent">
-                    Explore {venture.name.split(" ")[0]}
+                    Explore {venture.name}
                     <ArrowUpRight
                       aria-hidden
                       className="size-4 transition-transform duration-160 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"

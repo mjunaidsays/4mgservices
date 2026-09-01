@@ -25,10 +25,10 @@ import { interiorsProcess, interiorsProjects } from "@/lib/content/interiors";
 import { breadcrumbJsonLd, interiorsBusinessJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "MND Interiors — interior design, architecture & fit-out",
+  title: "4M Interiors — interior design, architecture & fit-out",
   description:
-    "MND Interiors designs and builds offices, retail, industrial and institutional spaces for 4M Global Services clients — from client brief through to execution.",
-  alternates: { canonical: "/solutions/mnd-interiors" },
+    "4M Interiors designs and builds offices, retail, industrial and institutional spaces for 4M Global Services clients — from client brief through to execution.",
+  alternates: { canonical: "/solutions/4m-interiors" },
 };
 
 const projectTypeCards = [
@@ -72,30 +72,38 @@ const stats = [
   },
 ];
 
-export default function MndInteriorsPage() {
+export default function FourMInteriorsPage() {
   const heroImage = interiorsProjects[0]?.images[0];
+  // The hero's own side visual — a second, distinct project photo so the
+  // page doesn't show the same image twice in its first screen. Chosen for
+  // being a real eye-level shot rather than a top-down render (those read as
+  // confusing floor-plan diagrams at hero size) and for carrying no other
+  // client's brand signage in frame, unlike most of the other candidates.
+  const heroSideImage =
+    interiorsProjects.find((project) => project.slug === "united-industries")
+      ?.images[0] ?? interiorsProjects[1]?.images[0];
 
   return (
     <div className="brand-mnd">
       <JsonLd
         data={[
           interiorsBusinessJsonLd({
-            name: "MND Interiors",
+            name: "4M Interiors",
             description:
               "Interior design, architecture and fit-out for offices, retail, industrial and institutional spaces.",
-            url: "/solutions/mnd-interiors",
+            url: "/solutions/4m-interiors",
           }),
           breadcrumbJsonLd([
             { name: "Home", href: "/" },
             { name: "Solutions", href: "/solutions" },
-            { name: "MND Interiors", href: "/solutions/mnd-interiors" },
+            { name: "4M Interiors", href: "/solutions/4m-interiors" },
           ]),
         ]}
       />
 
-      {/* Hero — a bespoke two-column layout (matching Mindora's own logo
-          treatment) rather than the shared PageHero, so the real MND mark can
-          sit alongside the copy instead of only appearing as text. */}
+      {/* Hero — a bespoke two-column layout (matching Mindora's own visual
+          treatment) rather than the shared PageHero, so a real project photo
+          can sit alongside the copy instead of only appearing as text. */}
       <section className="on-dark relative isolate overflow-hidden bg-navy-950 text-white">
         {heroImage && (
           <>
@@ -133,7 +141,7 @@ export default function MndInteriorsPage() {
                 <span aria-hidden>/</span>
               </li>
               <li aria-current="page" className="text-white/80">
-                MND Interiors
+                4M Interiors
               </li>
             </ol>
           </nav>
@@ -142,7 +150,7 @@ export default function MndInteriorsPage() {
             <div>
               <Reveal small>
                 <p className="text-eyebrow font-semibold text-accent-dark uppercase">
-                  MND Interiors
+                  4M Interiors
                 </p>
               </Reveal>
 
@@ -178,25 +186,30 @@ export default function MndInteriorsPage() {
               </Reveal>
             </div>
 
-            <Reveal className="justify-self-center" delay={0.1}>
-              <div className="relative">
-                <div
-                  aria-hidden
-                  className="absolute inset-0 -z-10 scale-125 rounded-full bg-mnd-500/20 blur-3xl"
-                />
-                {/* The real MND Interiors mark, background keyed out — it sits
-                    directly on the hero rather than boxed in a card, since its
-                    own gold and charcoal already read cleanly on navy. */}
-                <Image
-                  src="/brand/mnd-logo.png"
-                  alt="MND Interiors — we convert your dreams into realities"
-                  width={1534}
-                  height={721}
-                  priority
-                  className="h-auto w-64 sm:w-80 lg:w-full"
-                />
-              </div>
-            </Reveal>
+            {heroSideImage && (
+              <Reveal className="justify-self-center" delay={0.1}>
+                <div className="relative w-full max-w-md lg:max-w-none">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 -z-10 scale-110 rounded-full bg-mnd-500/20 blur-3xl"
+                  />
+                  {/* A real, finished project — framed like a photograph
+                      rather than boxed like a logo tile, matching the
+                      photo-in-a-card treatment used on the homepage's
+                      "Why choose us" section. */}
+                  <div className="overflow-hidden rounded-panel border border-white/10 shadow-e3">
+                    <Image
+                      src={heroSideImage.src}
+                      alt={heroSideImage.alt}
+                      width={heroSideImage.width}
+                      height={heroSideImage.height}
+                      priority
+                      className="h-auto w-full"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            )}
           </div>
         </div>
       </section>
@@ -212,10 +225,10 @@ export default function MndInteriorsPage() {
               Interior, architecture and construction, under one team
             </h2>
             <p className="mt-5 text-lead text-ink-600">
-              MND was established in 2019 and has successfully handled various
-              architectural and construction projects of different scales and
-              requirements. The company deals with a blend of projects related
-              to interior, architecture, engineering and construction services.
+              We were established in 2019 and have successfully handled
+              various architectural and construction projects of different
+              scales and requirements — a blend of work spanning interior,
+              architecture, engineering and construction services.
             </p>
             <p className="mt-4 leading-relaxed text-ink-600">
               Our interior designers work collaboratively to provide

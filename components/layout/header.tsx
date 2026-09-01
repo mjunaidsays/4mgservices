@@ -1,7 +1,7 @@
 "use client";
 
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { ChevronDown, Menu, Package, Phone } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -116,18 +116,6 @@ export function Header() {
         </NavigationMenu.Root>
 
         <div className="flex items-center gap-2">
-          <Button
-            asChild
-            variant="ghostLight"
-            size="sm"
-            className="hidden xl:inline-flex"
-          >
-            <Link href="/track">
-              <Package aria-hidden />
-              Track
-            </Link>
-          </Button>
-
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href="/quote">Get a Quote</Link>
           </Button>

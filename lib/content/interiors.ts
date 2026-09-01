@@ -2,10 +2,11 @@ import type { SiteImage } from "@/lib/content/images";
 import type { ClientLogo } from "@/lib/content/testimonials";
 
 /**
- * MND Interiors — 4M Global Services' interior design, architecture and fit-out
- * division. All copy, figures and imagery are sourced directly from the
- * company's own supplied profile ("MND interior_Company Profile final.pdf");
- * nothing here is invented. Two exclusions, both confirmed with the owner:
+ * 4M Interiors — 4M Global Services' interior design, architecture and fit-out
+ * division (formerly branded "MND Interiors"). All copy, figures and imagery
+ * are sourced directly from the company's own supplied profile ("MND
+ * interior_Company Profile final.pdf"); nothing here is invented. Two
+ * exclusions, both confirmed with the owner:
  *
  *   - The AIN Engineering Services project has no client logo anywhere in the
  *     source document and none could be found publicly, so it lists a client

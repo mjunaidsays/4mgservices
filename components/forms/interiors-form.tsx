@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { interiorsProjectTypes } from "@/lib/content/interiors";
 import { initialActionState } from "@/lib/schemas";
 
-/** MND Interiors consultation request. Lives inside `.brand-mnd`, so it picks up the gold accent. */
+/** 4M Interiors consultation request. Lives inside `.brand-mnd`, so it picks up the gold accent. */
 export function InteriorsForm() {
   const [state, formAction, pending] = useActionState(
     submitInteriors,
@@ -28,7 +28,7 @@ export function InteriorsForm() {
         reference={state.reference}
         title="Consultation request received"
         description="Our design team will be in touch to arrange a walkthrough of your space and what you have in mind."
-        whatsappMessage={`Hello, I've just requested an MND Interiors consultation${state.reference ? ` (ref ${state.reference})` : ""}.`}
+        whatsappMessage={`Hello, I've just requested a 4M Interiors consultation${state.reference ? ` (ref ${state.reference})` : ""}.`}
       />
     );
   }
