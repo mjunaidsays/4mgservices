@@ -58,6 +58,11 @@ async function handleSubmission<T>({
 
   if (!parsed.success) {
     const flattened = z.flattenError(parsed.error);
+    // Logged (not just returned): a real visitor hitting validation errors is
+    // invisible in the client otherwise, and this is one of three early-exit
+    // paths that all look identical from the outside — "form submitted,
+    // nothing arrived" — without this, there is no way to tell them apart.
+    console.info(`[form:${bucket}] rejected by validation`, flattened.fieldErrors);
     return {
       status: "error",
       message: "Please check the highlighted fields and try again.",
@@ -72,12 +77,16 @@ async function handleSubmission<T>({
 
   // Honeypot: a hidden field only an automated filler would populate.
   if (data.company_website && data.company_website.length > 0) {
+    console.info(`[form:${bucket}] dropped — honeypot field was filled`);
     // Report success so the bot has nothing to learn from the response.
     return { status: "success", reference: referenceCode() };
   }
 
   // Time floor: humans do not complete a multi-field form in under two seconds.
   if (typeof data.elapsedMs === "number" && data.elapsedMs < MIN_SUBMIT_MS) {
+    console.info(
+      `[form:${bucket}] dropped — submitted in ${data.elapsedMs}ms, under the ${MIN_SUBMIT_MS}ms floor`,
+    );
     return { status: "success", reference: referenceCode() };
   }
 
@@ -85,6 +94,7 @@ async function handleSubmission<T>({
   const limit = rateLimit(`${bucket}:${clientIp(requestHeaders)}`);
 
   if (!limit.allowed) {
+    console.info(`[form:${bucket}] dropped — rate limited`);
     return {
       status: "error",
       message: `That is a few too many submissions in a short time. Please try again in about ${Math.ceil(limit.retryAfterSeconds / 60)} minutes, or WhatsApp us instead.`,
@@ -93,6 +103,7 @@ async function handleSubmission<T>({
 
   const reference = referenceCode();
   const built = build(parsed.data, reference);
+  console.info(`[form:${bucket}] sending notification ${reference}`);
 
   const { html, text } = notificationEmail({
     heading: built.heading,
