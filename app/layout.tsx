@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { InteractionTracker } from "@/components/analytics/interaction-tracker";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { WhatsAppFab } from "@/components/layout/whatsapp-fab";
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <Analytics />
         <SpeedInsights />
+        <InteractionTracker />
       </body>
     </html>
   );
