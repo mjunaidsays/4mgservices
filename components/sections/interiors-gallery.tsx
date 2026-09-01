@@ -26,7 +26,7 @@ export function InteriorsGallery() {
         <SectionHeading
           eyebrow="Our work"
           title="Projects delivered, not just rendered"
-          lead="A selection of the spaces MND Interiors has designed and built — click a project to see the full set."
+          lead="A selection of the spaces 4M Interiors has designed and built — click a project to see the full set."
         />
 
         <Stagger className="mt-12 grid auto-rows-fr gap-4 md:grid-cols-2 lg:grid-cols-3">

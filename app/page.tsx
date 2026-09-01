@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Advantages } from "@/components/sections/advantages";
 import { CtaBand } from "@/components/sections/cta-band";
+import { FeaturedVentures } from "@/components/sections/featured-ventures";
 import { Hero } from "@/components/sections/hero";
 import { IndustriesGrid } from "@/components/sections/industries-grid";
 import { Journey } from "@/components/sections/journey";
@@ -28,6 +29,7 @@ export default function HomePage() {
       <JsonLd data={localBusinessJsonLd()} />
       <Hero />
       <TrustStrip />
+      <FeaturedVentures />
       <ServicesBento />
       <Journey />
       <Advantages />

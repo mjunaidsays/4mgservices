@@ -16,7 +16,7 @@ export function InteriorsClients() {
         <SectionHeading
           eyebrow="Customer satisfaction"
           title="Trusted across FMCG, retail, telecom and education"
-          lead="A selection of the organisations MND Interiors has designed and built for."
+          lead="A selection of the organisations 4M Interiors has designed and built for."
           align="center"
         />
 

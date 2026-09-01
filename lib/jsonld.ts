@@ -142,7 +142,7 @@ export function articleJsonLd(post: {
 }
 
 /**
- * MND Interiors is a design/fit-out business, not a software product, so it
+ * 4M Interiors is a design/fit-out business, not a software product, so it
  * gets `HomeAndConstructionBusiness` rather than `SoftwareApplication` — the
  * schema.org type built for exactly this kind of trade.
  */

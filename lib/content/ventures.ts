@@ -55,9 +55,9 @@ export const ventures: Venture[] = [
     division: "technology",
   },
   {
-    slug: "mnd-interiors",
-    name: "MND Interiors",
-    href: "/solutions/mnd-interiors",
+    slug: "4m-interiors",
+    name: "4M Interiors",
+    href: "/solutions/4m-interiors",
     icon: Ruler,
     tagline: "We convert your dreams into realities",
     description:

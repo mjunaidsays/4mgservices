@@ -265,7 +265,7 @@ export async function submitInteriors(
     bucket: "interiors",
     build: (data, reference) => ({
       subject: `Interiors consultation request ${reference} — ${data.projectType}`,
-      heading: "New MND Interiors consultation request",
+      heading: "New 4M Interiors consultation request",
       intro: `${data.name} would like a design consultation for a ${data.projectType.toLowerCase()} project.`,
       replyTo: data.email,
       senderName: data.name,
