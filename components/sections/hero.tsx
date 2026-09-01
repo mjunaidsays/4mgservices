@@ -43,8 +43,8 @@ export function Hero() {
           <Reveal small delay={0.1}>
             <p className="mt-6 max-w-2xl text-lead text-white/70">
               4M Global Services is a group of four businesses — logistics,
-              interior design, campus software and kids&apos; learning — built
-              and run by one accountable team.
+              interior design, campus software and kids&apos; learning — each
+              run by its own dedicated team of specialists.
             </p>
           </Reveal>
 
