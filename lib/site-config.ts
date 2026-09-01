@@ -167,7 +167,6 @@ export const footerNav = [
     title: "Get started",
     links: [
       { label: "Request a quote", href: "/quote" },
-      { label: "Track a shipment", href: "/track" },
       { label: "Privacy policy", href: "/privacy" },
       { label: "Terms of service", href: "/terms" },
     ],

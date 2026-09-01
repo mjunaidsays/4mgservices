@@ -176,26 +176,6 @@ export const interiorsSchema = z
 export type InteriorsInput = z.infer<typeof interiorsSchema>;
 
 /* -------------------------------------------------------------------------- */
-/* Shipment status request                                                     */
-/* -------------------------------------------------------------------------- */
-
-export const trackSchema = z
-  .object({
-    reference: z
-      .string()
-      .trim()
-      .min(3, "Enter your booking, container or AWB reference")
-      .max(80),
-    name,
-    email,
-    phone: phone.optional().or(z.literal("")).default(""),
-    notes: z.string().trim().max(800).optional().default(""),
-  })
-  .extend(spamGuardSchema.shape);
-
-export type TrackInput = z.infer<typeof trackSchema>;
-
-/* -------------------------------------------------------------------------- */
 /* Server Action result                                                        */
 /* -------------------------------------------------------------------------- */
 

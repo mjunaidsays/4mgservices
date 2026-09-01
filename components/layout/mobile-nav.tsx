@@ -88,9 +88,6 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
             <Button asChild size="md" className="w-full">
               <Link href="/quote">Get a Quote</Link>
             </Button>
-            <Button asChild variant="outlineLight" size="md" className="w-full">
-              <Link href="/track">Track a Shipment</Link>
-            </Button>
 
             <div className="flex flex-col gap-1 pt-2 text-sm">
               <a

@@ -88,6 +88,12 @@ export const images = {
     height: 645,
     alt: "Drivers loading a distribution van at the kerbside",
   },
+  cognitaClassroom: {
+    src: "/images/cognita-classroom.jpg",
+    width: 747,
+    height: 598,
+    alt: "Students using tablets together at their desks in a classroom",
+  },
 } as const satisfies Record<string, SiteImage>;
 
 export type ImageKey = keyof typeof images;

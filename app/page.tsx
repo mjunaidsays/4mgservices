@@ -1,25 +1,16 @@
 import type { Metadata } from "next";
 
-import { Advantages } from "@/components/sections/advantages";
+import { BusinessLines } from "@/components/sections/business-lines";
 import { CtaBand } from "@/components/sections/cta-band";
-import { FeaturedVentures } from "@/components/sections/featured-ventures";
 import { Hero } from "@/components/sections/hero";
-import { IndustriesGrid } from "@/components/sections/industries-grid";
-import { Journey } from "@/components/sections/journey";
-import { ServicesBento } from "@/components/sections/services-bento";
-import { Stats } from "@/components/sections/stats";
-import { Testimonials } from "@/components/sections/testimonials";
-import { TrustStrip } from "@/components/sections/trust-strip";
-import { VenturesStrip } from "@/components/sections/ventures-strip";
-import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { JsonLd } from "@/components/seo/json-ld";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — Logistics, Transport & Customs Clearance`,
+  title: `${siteConfig.name} — Logistics, Interior Design, Campus Software & Kids' Learning`,
   description:
-    "UAE and Pakistan based freight forwarding and customs clearance. Sea and air freight, import and export management, perishables clearance, warehousing and door-to-door cargo delivery.",
+    "4M Global Services is a UAE and Pakistan based group running four businesses — freight forwarding and customs clearance, interior design and fit-out, campus management software, and a kids' learning app — under one team.",
   alternates: { canonical: "/" },
 };
 
@@ -28,17 +19,13 @@ export default function HomePage() {
     <>
       <JsonLd data={localBusinessJsonLd()} />
       <Hero />
-      <TrustStrip />
-      <FeaturedVentures />
-      <ServicesBento />
-      <Journey />
-      <Advantages />
-      <Stats />
-      <IndustriesGrid />
-      <WhyChooseUs />
-      <Testimonials />
-      <VenturesStrip />
-      <CtaBand />
+      <BusinessLines />
+      <CtaBand
+        title="One team, four businesses"
+        description="4M Global Services runs logistics, interior design, campus software and kids' learning under one team. Whatever brought you here, we'd like to hear from you."
+        primaryLabel="Contact us"
+        primaryHref="/contact"
+      />
     </>
   );
 }

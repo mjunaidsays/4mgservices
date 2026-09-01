@@ -11,7 +11,6 @@ import {
   demoSchema,
   interiorsSchema,
   quoteSchema,
-  trackSchema,
   type ActionState,
 } from "@/lib/schemas";
 import { siteConfig } from "@/lib/site-config";
@@ -274,32 +273,6 @@ export async function submitInteriors(
         { label: "Project type", value: data.projectType },
         { label: "City", value: data.city },
         { label: "Approximate area", value: data.approxArea },
-        { label: "Name", value: data.name },
-        { label: "Email", value: data.email },
-        { label: "Phone", value: data.phone },
-        { label: "Notes", value: data.notes },
-      ],
-    }),
-  });
-}
-
-export async function submitTrack(
-  _previous: ActionState,
-  formData: FormData,
-): Promise<ActionState> {
-  return handleSubmission({
-    schema: trackSchema,
-    formData,
-    bucket: "track",
-    build: (data, reference) => ({
-      subject: `Shipment status request ${reference} — ${data.reference}`,
-      heading: "Shipment status request",
-      intro: `${data.name} has asked for an update on reference ${data.reference}.`,
-      replyTo: data.email,
-      senderName: data.name,
-      acknowledgementSummary: `You asked for a status update on shipment reference ${data.reference}.`,
-      fields: [
-        { label: "Shipment reference", value: data.reference },
         { label: "Name", value: data.name },
         { label: "Email", value: data.email },
         { label: "Phone", value: data.phone },
