@@ -56,19 +56,19 @@ export default function OpengraphImage() {
               fontWeight: 700,
             }}
           >
-            Logistics · Transport · Customs Clearance
+            Logistics · Technology · Design
           </div>
           <div
             style={{
               color: "#ffffff",
-              fontSize: 82,
-              lineHeight: 1.05,
+              fontSize: 48,
+              lineHeight: 1.15,
               marginTop: 20,
               fontWeight: 700,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
             }}
           >
-            Delivering with Precision
+            {siteConfig.tagline}
           </div>
           <div
             style={{

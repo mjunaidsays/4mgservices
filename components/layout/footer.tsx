@@ -19,7 +19,11 @@ export function Footer() {
           <div>
             <Logo />
 
-            <p className="mt-6 max-w-sm text-[0.9375rem] leading-relaxed text-white/60">
+            <p className="mt-4 font-display text-sm font-medium text-orange-400">
+              {siteConfig.tagline}
+            </p>
+
+            <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-white/60">
               A UAE and Pakistan based shipping and logistics company
               simplifying international trade for businesses of every size.
             </p>

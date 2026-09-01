@@ -159,7 +159,7 @@ export function BusinessLines() {
       <div className="container-site">
         <SectionHeading
           eyebrow="What we do"
-          title="Four businesses, one team"
+          title="Four businesses, four dedicated teams"
           lead="Logistics is where we started. Interior design, campus software and kids' learning are where we've grown — each run with the same accountability."
         />
 

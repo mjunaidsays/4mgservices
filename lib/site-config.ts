@@ -10,7 +10,8 @@ export const siteConfig = {
   shortName: "4MGS",
   legalName: "4M Global Services",
   url: "https://www.4mgservices.com",
-  tagline: "Delivering with Precision",
+  tagline:
+    "Logistics Beyond Borders. Technology Beyond Limits. Design Beyond Imagination.",
   /** Printed on the company logo — use it as the brand signature line. */
   motto: "Striving Towards Excellence",
   description:
