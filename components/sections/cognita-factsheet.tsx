@@ -13,6 +13,7 @@ import {
 
 import { Reveal, RevealItem, Stagger } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { CognitaPhoto } from "@/components/sections/cognita-photo";
 import {
   CognitaBenefitMatrix,
   CognitaFeatureDirectory,
@@ -197,25 +198,30 @@ export function CognitaOverview() {
   return (
     <section id="cognita-overview" className="section-y bg-mist-50">
       <div className="container-site">
-        <SectionHeading
-          eyebrow="Executive briefing · Pakistan edition"
-          title="One platform, a clearer view of your institution"
-          lead="For K–12 private schools, Matric and O/A Level networks, intermediate colleges and multi-branch universities: connect campus governance, academics, PKR fee management, logistics and parent engagement in one cloud ecosystem."
-        />
-        <p className="mt-5 max-w-3xl text-sm leading-relaxed text-ink-600">
-          Product details and illustrative figures are adapted from the{" "}
-          <a
-            href={cognitaSource}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-accent underline underline-offset-4"
-          >
-            Cognita factsheet by Aptura Technologies
-          </a>
-          . The factsheet lists 4M Global Services as its global marketing partner
-          for 2026–27. Outcomes depend on your institution and implementation;
-          these figures are not independently verified performance benchmarks.
-        </p>
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <SectionHeading
+              eyebrow="Executive briefing · Pakistan edition"
+              title="One platform, a clearer view of your institution"
+              lead="For K–12 private schools, Matric and O/A Level networks, intermediate colleges and multi-branch universities: connect campus governance, academics, PKR fee management, logistics and parent engagement in one cloud ecosystem."
+            />
+            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-ink-600">
+              Product details and illustrative figures are adapted from the{" "}
+              <a
+                href={cognitaSource}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-accent underline underline-offset-4"
+              >
+                Cognita factsheet by Aptura Technologies
+              </a>
+              . The factsheet lists 4M Global Services as its global marketing partner
+              for 2026–27. Outcomes depend on your institution and implementation;
+              these figures are not independently verified performance benchmarks.
+            </p>
+          </div>
+          <CognitaPhoto name="classroom" />
+        </div>
         <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             [
@@ -427,11 +433,16 @@ export function CognitaDetails() {
     <>
       <section id="cognita-features" className="section-y bg-white">
         <div className="container-site">
-          <SectionHeading
-            eyebrow="Complete capability directory"
-            title={`${cognitaFeatures.length} features, across every campus function`}
-            lead="Explore all six functional pillars, from admissions and examination to fee recovery, facilities and communication. Search by name, description or topic."
-          />
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <div className="lg:order-2">
+              <SectionHeading
+                eyebrow="Complete capability directory"
+                title={`${cognitaFeatures.length} features, across every campus function`}
+                lead="Explore all six functional pillars, from admissions and examination to fee recovery, facilities and communication. Search by name, description or topic."
+              />
+            </div>
+            <CognitaPhoto name="library" className="lg:order-1" />
+          </div>
           <CognitaFeatureDirectory />
         </div>
       </section>
@@ -447,11 +458,14 @@ export function CognitaDetails() {
       </section>
       <section id="cognita-roles" className="section-y bg-white">
         <div className="container-site">
-          <SectionHeading
-            eyebrow="Role-based access control"
-            title="The right access for every role"
-            lead="Global oversight flows through campus administration to scoped academic, financial and support roles. Expand any role to inspect its permissions and portal."
-          />
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <SectionHeading
+              eyebrow="Role-based access control"
+              title="The right access for every role"
+              lead="Global oversight flows through campus administration to scoped academic, financial and support roles. Expand any role to inspect its permissions and portal."
+            />
+            <CognitaPhoto name="collaboration" />
+          </div>
           <div className="mt-10 rounded-panel border border-mist-200 bg-mist-50 p-6 text-center sm:p-8">
             <ShieldCheck aria-hidden className="mx-auto size-7 text-accent" />
             <p className="mt-3 font-display text-lg font-semibold text-ink-900">
